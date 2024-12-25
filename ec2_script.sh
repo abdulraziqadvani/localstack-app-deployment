@@ -13,14 +13,14 @@ generate_mongodb_uri() {
   local db_name="$1"  # The database name passed as an argument
 
   # MongoDB connection details
-  local username=""
-  local password=""
-  local host=""
-  local ssl=""
-  local replica_set=""
-  local auth_source=""
-  local retry_writes=""
-  local app_name=""
+  local username="admin"
+  local password="admin123"
+  local host="cluster0-shard-00-00.jqqim.mongodb.net:27017,cluster0-shard-00-01.jqqim.mongodb.net:27017,cluster0-shard-00-02.jqqim.mongodb.net:27017"
+  local ssl="true"
+  local replica_set="atlas-valm6p-shard-0"
+  local auth_source="admin"
+  local retry_writes="true"
+  local app_name="Cluster0"
 
   # Generate the connection URI
   local uri="mongodb://${username}:${password}@${host}/${db_name}?ssl=${ssl}&replicaSet=${replica_set}&authSource=${auth_source}&retryWrites=${retry_writes}&w=majority&appName=${app_name}"
