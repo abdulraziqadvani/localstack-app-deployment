@@ -29,6 +29,9 @@ generate_mongodb_uri() {
   echo "$uri"
 }
 
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+
 curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
 bash nodesource_setup.sh
 apt update -y
