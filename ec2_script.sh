@@ -16,14 +16,13 @@ generate_mongodb_uri() {
   local username="admin"
   local password="admin123"
   local host="cluster0-shard-00-00.jqqim.mongodb.net:27017,cluster0-shard-00-01.jqqim.mongodb.net:27017,cluster0-shard-00-02.jqqim.mongodb.net:27017"
-  local ssl="true"
   local replica_set="atlas-valm6p-shard-0"
   local auth_source="admin"
   local retry_writes="true"
   local app_name="Cluster0"
 
   # Generate the connection URI
-  local uri="mongodb://${username}:${password}@${host}/${db_name}?ssl=${ssl}&replicaSet=${replica_set}&authSource=${auth_source}&retryWrites=${retry_writes}&w=majority&appName=${app_name}"
+  local uri="mongodb://${username}:${password}@${host}/${db_name}?replicaSet=${replica_set}&authSource=${auth_source}&retryWrites=${retry_writes}&w=majority&appName=${app_name}"
 
   # Return the URI
   echo "$uri"
@@ -45,6 +44,8 @@ git clone $REPO_URL $TARGET_DIR
 
 # Step 2: Navigate to the cloned repository
 cd $TARGET_DIR || { echo "Failed to navigate to $TARGET_DIR"; exit 1; }
+
+mv .env.sample .env
 
 # Step 3: Update the .env file
 if [ -f $ENV_FILE ]; then
